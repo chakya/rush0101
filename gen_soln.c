@@ -14,6 +14,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+void	ft_put1nb(char nb);
+void	print_array(int **array, int x, int y);
+
 int	scan_for_n(int **view, int view_direction_i, int n_view)
 {
 	int	j;
@@ -29,10 +32,11 @@ int	insert_value_col(int **grid, int coord_col)
 {
 	int 	i;
 	
-	i = -1;
-	while (i++ < 4)
+	i = 0;
+	while (i < 4)
 	{
 		grid[i][coord_col] = i + 1;
+		i++;
 	}
 	return (1);
 }
@@ -41,53 +45,61 @@ int	insert_value_row(int **grid, int coord_row)
 {
 	int 	i;
 	
-	i = -1;
-	while (i++ < 4)
+	i = 0;
+	while (i < 4)
 	{
 		grid[coord_row][i] = i + 1;
+		i++;
 	}
 	return (1);
 }
 
-void	ft_put1nb(char nb)
+int	three_insert_value_col(int **grid, int **view, int **view_three_table, int coord_col)
 {
-	write(1, &nb, 1);
-	write(1, " ", 1);
-}
-
-void	print_array(int **array, int x, int y)
-{
+	int	coldown;
 	int	i;
 	int	j;
-
+	
+	coldown = view[1][coord_col];
+	printf("value of coldown = %d\n", coldown);
 	i = 0;
-	while (i < x)
+	while ( i < 6 && view_three_table[i][4] == coldown)
 	{
 		j = 0;
-		while (j < y)
+		while (j < 4 )
 		{
-			ft_put1nb(array[i][j] + '0');
+			if (view_three_table[i][j] == grid[j][coord_col])
+			{
+				j=0;
+				printf("i counter = %d\n", i);
+				while (j < 4)
+				{
+					grid[j][coord_col] = view_three_table[i][j];
+					j++;
+				}
+				return (1);
+			}	
 			j++;
 		}
-		write(1, "\n", 1);
-		i++;
+		i++;	
 	}
+	return (0);
 }
 
-int	gen_soln(int **view, int **grid, int grid_size)
+int	gen_soln(int **view, int **grid, int **view_three_table, int grid_size)
 {
 	int	scan_colup;
 	int	scan_rowleft;
 	
-	print_array(view, grid_size, grid_size);
+	scan_colup = scan_for_n(view, 0, 4);	
 	scan_rowleft = scan_for_n(view, 2, 4);
-	printf("scan_rowleft: %d\n", scan_rowleft);
-//	insert_value_row(grid, scan_rowleft);
-	print_array(grid, grid_size, grid_size);
-	scan_colup = scan_for_n(view, 0, 4);
-	printf("scan_colup: %d\n", scan_colup);	
 	insert_value_col(grid, scan_colup);
+	insert_value_row(grid, scan_rowleft);
+	scan_colup = scan_for_n(view, 0, 3);
+	three_insert_value_col(grid, view, view_three_table, scan_colup);
+	printf("scan_colup for 3: %d\n", scan_colup);
+	printf("\n");	
 	print_array(grid, grid_size, grid_size);
-
+	print_array(view_three_table, 6, 5);
 	return (1);
 }

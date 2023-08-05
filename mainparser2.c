@@ -12,20 +12,10 @@
 
 #include <stdlib.h> 
 
-int	**create_array(int size)
-{
-	int	**array;
-	int	i;
-
-	i = 0;
-	array = (int **) malloc(size * sizeof(int *));
-	while (i < size)
-	{
-		array[i] = (int *) malloc(size * sizeof(int));
-		i++;
-	}
-	return (array);
-}
+int	gen_soln(int **view, int **grid, int **view_three_table, int grid_size);
+int	**create_array(int x, int y);
+void	populate_view_three_table(int **view_three_table);
+void	print_array(int **array, int x, int y);
 
 /*	v = 0: colup; v = 1: coldown; v = 2: rowleft; v = 3: rowright  */
 int	parse_for_view(int argc, char **argv, int **view, int size)
@@ -55,9 +45,15 @@ int	parse_for_view(int argc, char **argv, int **view, int size)
 int	main(int argc, char **argv)
 {
 	int	**view;
+	int	**grid;
+	int	**view_three_table;
 	int	size;
 
 	size = 4;
-	view = create_array(size);
+	view = create_array(size, size);
 	parse_for_view(argc, argv, view, size);
+	grid = create_array(size, size);
+	view_three_table = create_array(6, 5);
+	populate_view_three_table(view_three_table);
+	gen_soln(view, grid, view_three_table, size);
 }
