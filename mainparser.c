@@ -12,6 +12,8 @@
 
 #include <stdlib.h> 
 
+int	gen_soln(int **view, int **grid, int grid_size);
+
 int	**create_array(int size)
 {
 	int	**array;
@@ -55,9 +57,12 @@ int	parse_for_view(int argc, char **argv, int **view, int size)
 int	main(int argc, char **argv)
 {
 	int	**view;
+	int	**grid;
 	int	size;
 
 	size = 4;
 	view = create_array(size);
 	parse_for_view(argc, argv, view, size);
+	grid = create_array(size);
+	gen_soln(view, grid, size);
 }
