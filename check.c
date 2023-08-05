@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check1.c                                           :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: whuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 14:52:05 by whuang            #+#    #+#             */
-/*   Updated: 2023/08/05 18:21:44 by whuang           ###   ########.fr       */
+/*   Updated: 2023/08/05 21:03:58 by whuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,119 +74,3 @@ int	check_visibility(int clues[4][4], int ans[4][4])
 	}
 	return (1);
 }
-/*
-	// Check visibility from the top
-	i = row - 1;
-	while (i >= 0)
-	{
-		if (grid[i][col] > visible_top)
-		{
-			visible_top = grid[i][col];
-			if (visible_top == SIZE)
-				break ;
-		}
-		i--;
-	}
-
-<<<<<<< HEAD
-// int	check_visibility(int clues[SIZE][4], int row, int col) {
-int	check_visibility(int *clues[4], int **ans)
-{
-	return (0);
-	check_visibility(clues, ans);
-}
-
-//     int visible_left = 0, visible_right = 0, visible_top = 0, visible_bottom = 0;
-//     int i;
-
-//     // Check visibility from the left
-//     i = col - 1;
-//     while (i >= 0) {
-//         if (grid[row][i] > visible_left) {
-//             visible_left = grid[row][i];
-//             if (visible_left == SIZE)
-//                 break;
-//         }
-//         i--;
-//     }
-
-//     // Check visibility from the right
-//     i = col + 1;
-//     while (i < SIZE) {
-//         if (grid[row][i] > visible_right) {
-//             visible_right = grid[row][i];
-//             if (visible_right == SIZE)
-//                 break;
-//         }
-//         i++;
-//     }
-
-//     // Check visibility from the top
-//     i = row - 1;
-//     while (i >= 0) {
-//         if (grid[i][col] > visible_top) {
-//             visible_top = grid[i][col];
-//             if (visible_top == SIZE)
-//                 break;
-//         }
-//         i--;
-//     }
-
-//     // Check visibility from the bottom
-//     i = row + 1;
-//     while (i < SIZE) {
-//         if (grid[i][col] > visible_bottom) {
-//             visible_bottom = grid[i][col];
-//             if (visible_bottom == SIZE)
-//                 break;
-//         }
-//         i++;
-//     }
-
-//     return (visible_left == clues[row][2]) && (visible_right == clues[row][3]) &&
-//            (visible_top == clues[col][0]) && (visible_bottom == clues[col][1]);
-// }
-=======
-	// Check visibility from the bottom
-	i = row + 1;
-	while (i < SIZE)
-	{
-		if (grid[i][col] > visible_bottom)
-		{
-			visible_bottom = grid[i][col];
-			if (visible_bottom == SIZE)
-				break ;
-		}
-		i++;
-	}
-
-	// Check visibility from the left
-	i = col - 1;
-	while (i >= 0)
-	{
-		if (grid[row][i] > visible_left)
-		{
-			visible_left = grid[row][i];
-			if (visible_left == SIZE)
-				break ;
-		}
-		i--;
-	}
-
-	// Check visibility from the right
-	i = col + 1;
-	while (i < SIZE)
-	{
-		if (grid[row][i] > visible_right)
-		{
-			visible_right = grid[row][i];
-			if (visible_right == SIZE)
-				break ;
-		}
-		i++;
-	}
-
-    return (visible_left == clues[row][2]) && (visible_right == clues[row][3]) &&
-           (visible_top == clues[col][0]) && (visible_bottom == clues[col][1]);
-}*/
->>>>>>> 079bbb5 (check.c)
