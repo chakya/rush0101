@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+qq/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
@@ -6,9 +6,25 @@
 /*   By: whuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 14:52:05 by whuang            #+#    #+#             */
-/*   Updated: 2023/08/05 21:03:58 by whuang           ###   ########.fr       */
+/*   Updated: 2023/08/05 21:28:03 by whuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// Check if 'val' is not present in the row and column
+int	is_valid(int **grid, int row, int col, int val)
+{
+	int	i;
+
+	i = 0;
+	while (grid[row][i] && grid[i][col])
+	{
+		if (grid[row][i] == val || grid[i][col] == val) {
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
 
 int	get_vis(int arr[4])
 {
