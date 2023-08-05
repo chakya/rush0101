@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main1.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwijaya <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 15:23:46 by cwijaya           #+#    #+#             */
-/*   Updated: 2023/08/05 20:44:24 by whuang           ###   ########.fr       */
+/*   Updated: 2023/08/05 20:55:11 by whuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*	v = 0: colup; v = 1: coldown; v = 2: rowleft; v = 3: rowright  */
 
 #include <unistd.h>
 
-int	**create_array(int x, int y);
+int		**create_array(int x, int y);
 void	print_array(int **array, int x, int y);
 
 int	parse_for_view(char **argv, int **view, int size)
@@ -37,7 +37,8 @@ int	parse_for_view(char **argv, int **view, int size)
 	}
 	return (1);
 }
-int	param_error(char* argv)
+
+int	param_error(char *argv)
 {
 	int	i;
 
