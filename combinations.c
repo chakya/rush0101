@@ -9,9 +9,8 @@
 /*   Updated: 2023/08/05 12:51:38 by cwijaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "./array.c"
 
-int	*gen_comb(int l, int r, int n)
-{
+// int	*gen_comb(int l, int r, int n)
+// {
 
-}
+// }

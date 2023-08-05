@@ -9,6 +9,8 @@
 /*   Updated: 2023/08/05 12:09:18 by cwijaya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
+#include <unistd.h>
 
 int	**create_array(int x, int y)
 {
@@ -38,16 +40,28 @@ void	free_array(int **array, int x)
 	free(array);
 }
 
-int	len(const int *array)
-{
-	int	length;
 
-	length = 0;
-	while (array[length] != '\0')
-	{
-		length++;
-	}
-	return (length);
+// int	len(int *array)
+// {
+// 	return (sizeof(array) / sizeof(int));
+// }
+
+// int	len2d(int **array)
+// {
+// 	int	length;
+
+// 	length = 0;
+// 	while (array[length])
+// 	{
+// 		length++;
+// 	}
+// 	return (length);
+// }
+
+void	ft_put1nb(char nb)
+{
+	write(1, &nb, 1);
+	write(1, " ", 1);
 }
 
 void	print_array(int **array, int x, int y)
@@ -61,7 +75,7 @@ void	print_array(int **array, int x, int y)
 		j = 0;
 		while (j < y)
 		{
-			write(1, array, len(array));
+			ft_put1nb(array[i][j] + '0');
 			j++;
 		}
 		write(1, "\n", 1);
