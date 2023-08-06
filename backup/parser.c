@@ -19,8 +19,8 @@ int ft_atoi(char *str);
 int ft_strlen(char *str);
 int *get_numbers(char *str);
 int check(int ac, char **av);
-int check_double(int tab[4][4], int pos, int num);
-int check_case(int tab[4][4], int pos, int entry[16]);
+int check_double(int **grid, int pos, int num);
+int check_case(int **grid, int pos, int entry[16]);
 #include <stdlib.h>
 
 int check(int ac, char **av)
@@ -36,14 +36,14 @@ int *get_numbers(char *str)
 {
 	int i;
 	int j;
-	int *tab;
+	int *grid;
 
-	if (!(tab = malloc(sizeof(int) * 16)))
+	if (!(grid = malloc(sizeof(int) * 16)))
 		return (0);
 	i = -1;
 	j = 0;
 	while (str[++i] != '\0')
 		if (str[i] >= '0' && str[i] <= '9')
-			tab[j++] = ft_atoi(str + i);
-	return (tab);
+			grid[j++] = ft_atoi(str + i);
+	return (grid);
 }

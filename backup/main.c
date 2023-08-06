@@ -20,8 +20,8 @@ int	ft_atoi(char *str);
 int	ft_strlen(char *str);
 int	*get_numbers(char *str);
 int	check(int ac, char **av);
-int	check_double(int tab[4][4], int pos, int num);
-int	check_case(int tab[4][4], int pos, int entry[16]);
+int	check_double(int **grid, int pos, int num);
+int	check_case(int **grid, int pos, int entry[16]);
 int	**create_array(int x, int y);
 void	free_array(int **array, int x);
 void	print_array(int **array, int x, int y);
@@ -70,7 +70,7 @@ void display_solution(int **grid)
 
 int main(int ac, char **av)
 {
-	int **grid = create_array(4, 4)
+	int **grid = create_array(4, 4);
 	int *view;
 
 	if (check(ac, av) == 1)

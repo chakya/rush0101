@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int check_double(int tab[4][4], int pos, int num)
+int check_double(int **grid, int pos, int num)
 {
 	int i;
 
 	i = -1;
 	while (++i < pos / 4)
-		if (tab[i][pos % 4] == num)
+		if (grid[i][pos % 4] == num)
 			return (1);
 	i = -1;
 	while (++i < pos % 4)
-		if (tab[pos / 4][i] == num)
+		if (grid[pos / 4][i] == num)
 			return (1);
 	return (0);
 }
 
-int check_col_up(int tab[4][4], int pos, int view[16])
+int check_col_up(int **grid, int pos, int view[16])
 {
 	int i;
 	int max;
@@ -38,9 +38,9 @@ int check_col_up(int tab[4][4], int pos, int view[16])
 	{
 		while (i < 4)
 		{
-			if (tab[i][pos % 4] > max)
+			if (grid[i][pos % 4] > max)
 			{
-				max = tab[i][pos % 4];
+				max = grid[i][pos % 4];
 				count++;
 			}
 			i++;
@@ -51,7 +51,7 @@ int check_col_up(int tab[4][4], int pos, int view[16])
 	return (0);
 }
 
-int check_row_right(int tab[4][4], int pos, int view[16])
+int check_row_right(int **grid, int pos, int view[16])
 {
 	int i;
 	int max_size;
@@ -64,9 +64,9 @@ int check_row_right(int tab[4][4], int pos, int view[16])
 	{
 		while (--i >= 0)
 		{
-			if (tab[pos / 4][i] > max_size)
+			if (grid[pos / 4][i] > max_size)
 			{
-				max_size = tab[pos / 4][i];
+				max_size = grid[pos / 4][i];
 				visible_towers++;
 			}
 		}
@@ -76,7 +76,7 @@ int check_row_right(int tab[4][4], int pos, int view[16])
 	return (0);
 }
 
-int check_col_down(int tab[4][4], int pos, int view[16])
+int check_col_down(int **grid, int pos, int view[16])
 {
 	int i;
 	int max;
@@ -89,9 +89,9 @@ int check_col_down(int tab[4][4], int pos, int view[16])
 	{
 		while (i >= 0)
 		{
-			if (tab[i][pos % 4] > max)
+			if (grid[i][pos % 4] > max)
 			{
-				max = tab[i][pos % 4];
+				max = grid[i][pos % 4];
 				count++;
 			}
 			i--;
@@ -102,7 +102,7 @@ int check_col_down(int tab[4][4], int pos, int view[16])
 	return (0);
 }
 
-int check_row_left(int tab[4][4], int pos, int view[16])
+int check_row_left(int **grid, int pos, int view[16])
 {
 	int i;
 	int max;
@@ -115,9 +115,9 @@ int check_row_left(int tab[4][4], int pos, int view[16])
 	{
 		while (i < 4)
 		{
-			if (tab[pos / 4][i] > max)
+			if (grid[pos / 4][i] > max)
 			{
-				max = tab[pos / 4][i];
+				max = grid[pos / 4][i];
 				count++;
 			}
 			i++;
@@ -128,15 +128,15 @@ int check_row_left(int tab[4][4], int pos, int view[16])
 	return (0);
 }
 
-int check_case(int tab[4][4], int pos, int view[16])
+int check_case(int **grid, int pos, int view[16])
 {
-	if (check_row_left(tab, pos, view) == 1)
+	if (check_row_left(grid, pos, view) == 1)
 		return (1);
-	if (check_row_right(tab, pos, view) == 1)
+	if (check_row_right(grid, pos, view) == 1)
 		return (1);
-	if (check_col_down(tab, pos, view) == 1)
+	if (check_col_down(grid, pos, view) == 1)
 		return (1);
-	if (check_col_up(tab, pos, view) == 1)
+	if (check_col_up(grid, pos, view) == 1)
 		return (1);
 	return (0);
 }
