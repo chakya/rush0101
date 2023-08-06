@@ -81,5 +81,6 @@ int main(int ac, char **av)
 		display_solution(grid);
 	else
 		ft_putstr("No solutions\n");
+	free_array(grid, 4);
 	return (0);
 }
