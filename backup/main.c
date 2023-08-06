@@ -26,7 +26,7 @@ int	**create_array(int x, int y);
 void	free_array(int **array, int x);
 void	print_array(int **array, int x, int y);
 
-int solve(int grid[4][4], int view[16], int pos)
+int solve(int **grid, int view[16], int pos)
 {
 	int size;
 
@@ -50,7 +50,7 @@ int solve(int grid[4][4], int view[16], int pos)
 	return (0);
 }
 
-void display_solution(int grid[4][4])
+void display_solution(int **grid)
 {
 	int i;
 	int j;
@@ -70,12 +70,7 @@ void display_solution(int grid[4][4])
 
 int main(int ac, char **av)
 {
-	int grid[4][4] = {
-		{0, 0, 0, 0},
-		{0, 0, 0, 0},
-		{0, 0, 0, 0},
-		{0, 0, 0, 0},
-	};
+	int **grid = create_array(4, 4)
 	int *view;
 
 	if (check(ac, av) == 1)
@@ -85,6 +80,6 @@ int main(int ac, char **av)
 	if (solve(grid, view, 0) == 1)
 		display_solution(grid);
 	else
-		ft_putstr("Did not find any solutions\n");
+		ft_putstr("No solutions\n");
 	return (0);
 }
