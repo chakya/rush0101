@@ -16,6 +16,11 @@
 
 void	ft_put1nb(char nb);
 void	print_array(int **array, int x, int y);
+int	insert_value_col(int **grid, int coord_col);
+int	insert_value_row(int **grid, int coord_row);
+int	three_insert_value_col(int **grid, int **view, int **view_three_table, int coord_col);
+int	three_insert_value_row(int **grid, int **view, int **view_three_table, int coord_row);
+int    solve(int **grid, int **view, int pos);
 
 int	scan_for_n(int **view, int view_direction_i, int n_view)
 {
@@ -26,64 +31,6 @@ int	scan_for_n(int **view, int view_direction_i, int n_view)
 		if (view[view_direction_i][j] == n_view)
 			return(j);
 	return (1);
-}
-
-int	insert_value_col(int **grid, int coord_col)
-{
-	int 	i;
-	
-	i = 0;
-	while (i < 4)
-	{
-		grid[i][coord_col] = i + 1;
-		i++;
-	}
-	return (1);
-}
-
-int	insert_value_row(int **grid, int coord_row)
-{
-	int 	i;
-	
-	i = 0;
-	while (i < 4)
-	{
-		grid[coord_row][i] = i + 1;
-		i++;
-	}
-	return (1);
-}
-
-int	three_insert_value_col(int **grid, int **view, int **view_three_table, int coord_col)
-{
-	int	coldown;
-	int	i;
-	int	j;
-	
-	coldown = view[1][coord_col];
-	printf("value of coldown = %d\n", coldown);
-	i = 0;
-	while ( i < 6 && view_three_table[i][4] == coldown)
-	{
-		j = 0;
-		while (j < 4 )
-		{
-			if (view_three_table[i][j] == grid[j][coord_col])
-			{
-				j=0;
-				printf("i counter = %d\n", i);
-				while (j < 4)
-				{
-					grid[j][coord_col] = view_three_table[i][j];
-					j++;
-				}
-				return (1);
-			}	
-			j++;
-		}
-		i++;	
-	}
-	return (0);
 }
 
 int	gen_soln(int **view, int **grid, int **view_three_table, int grid_size)
@@ -97,9 +44,12 @@ int	gen_soln(int **view, int **grid, int **view_three_table, int grid_size)
 	insert_value_row(grid, scan_rowleft);
 	scan_colup = scan_for_n(view, 0, 3);
 	three_insert_value_col(grid, view, view_three_table, scan_colup);
-	printf("scan_colup for 3: %d\n", scan_colup);
-	printf("\n");	
+	scan_rowleft = scan_for_n(view, 2, 3);
+	three_insert_value_row(grid, view, view_three_table, scan_rowleft);
 	print_array(grid, grid_size, grid_size);
-	print_array(view_three_table, 6, 5);
+	printf("Before\n\n");
+	solve(grid, view, 0);
+	print_array(grid, grid_size, grid_size);
+	printf("After\n");
 	return (1);
 }
